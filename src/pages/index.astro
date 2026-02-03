@@ -1,11 +1,18 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout title="Home">
+	<section class="py-24 text-center">
+		<h1 class="mb-6 text-5xl font-extrabold tracking-tight text-slate-900">
+			Stop Guessing. <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Start Analyzing.</span>
+		</h1>
+		<p class="mb-10 text-lg text-slate-600 max-w-2xl mx-auto">
+			A strategic approach to web security. Learn vulnerability research with professional precision.
+		</p>
+		<a href="/learn" class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-white rounded-lg bg-blue-700 hover:bg-blue-800 transition-all shadow-lg shadow-blue-200">
+			Start Hunting
+		</a>
+	</section>
+</MainLayout>
