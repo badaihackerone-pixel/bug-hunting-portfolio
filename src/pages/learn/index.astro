@@ -10,7 +10,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
             <p class="text-slate-600">Select a module to start hunting.</p>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-2">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             
             <a href="/learn/http-basics" class="block p-6 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-lg transition-all">
                 <div class="text-3xl mb-4">🌐</div>
@@ -25,6 +25,13 @@ import MainLayout from '../../layouts/MainLayout.astro';
                 <p class="text-slate-500 text-sm">Subdomain enum & Google Dorks.</p>
                 <div class="mt-2 text-xs font-bold text-green-600">Available Now</div>
             </a>
+
+            <div class="block p-6 bg-slate-50 border border-slate-200 rounded-xl opacity-75 grayscale cursor-not-allowed">
+                <div class="text-3xl mb-4">🔓</div>
+                <h3 class="font-bold text-xl mb-2 text-slate-600">3. IDOR</h3>
+                <p class="text-slate-500 text-sm">Insecure Direct Object References.</p>
+                <div class="mt-2 text-xs font-bold text-slate-400">Coming Soon</div>
+            </div>
 
         </div>
     </div>
