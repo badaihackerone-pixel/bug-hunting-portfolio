@@ -1,0 +1,121 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout title="HTTP Basics">
+    <div class="max-w-4xl mx-auto py-12 px-6">
+        
+        <a href="/learn" class="text-blue-600 hover:underline mb-8 block font-medium">← Back to Learning Path</a>
+
+        <article class="prose prose-slate lg:prose-lg max-w-none">
+            
+            <h1>HTTP Basics: The Language of the Web</h1>
+            <p class="lead">
+                Before you can break a website, you must understand how it talks. Every interaction is just a text conversation between a Client (Browser) and a Server.
+            </p>
+
+            <hr />
+
+            <h2>1. Anatomy of a Request</h2>
+            <p>
+                When you click a link, your browser sends a message. As a bug hunter, you don't look at the rendered page; you look at this raw message.
+            </p>
+
+            <div class="not-prose my-8 grid md:grid-cols-2 gap-4">
+                
+                <div class="bg-slate-900 rounded-lg overflow-hidden border border-slate-700 shadow-xl">
+                    <div class="bg-slate-800 px-4 py-2 text-xs font-bold text-slate-400 border-b border-slate-700 flex justify-between">
+                        <span>RAW REQUEST</span>
+                        <span class="text-blue-400">⬇ Sending</span>
+                    </div>
+                    <div class="p-4 font-mono text-sm text-slate-300 overflow-x-auto whitespace-pre">
+<span class="text-yellow-400 font-bold">POST</span> /api/login <span class="text-purple-400">HTTP/1.1</span>
+Host: bugcrowd.com
+User-Agent: Mozilla/5.0
+Content-Type: application/json
+Content-Length: 42
+
+<span class="text-green-400">&#123;
+  "username": "admin",
+  "password": "password123"
+&#125;</span></div>
+                </div>
+
+                <div class="bg-slate-900 rounded-lg overflow-hidden border border-slate-700 shadow-xl">
+                    <div class="bg-slate-800 px-4 py-2 text-xs font-bold text-slate-400 border-b border-slate-700 flex justify-between">
+                        <span>RAW RESPONSE</span>
+                        <span class="text-green-400">⬆ Received</span>
+                    </div>
+                    <div class="p-4 font-mono text-sm text-slate-300 overflow-x-auto whitespace-pre">
+<span class="text-purple-400">HTTP/1.1</span> <span class="text-green-400 font-bold">200 OK</span>
+Server: nginx
+Date: Mon, 01 Jan 2026 12:00:00 GMT
+Content-Type: application/json
+
+<span class="text-blue-300">&#123;
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1..."
+&#125;</span></div>
+                </div>
+
+            </div>
+            <p class="text-center text-sm text-slate-500 italic mt-2">Figure 1: A typical JSON login exchange.</p>
+
+            <h2>2. The Holy Trinity of Methods</h2>
+            <p>While there are many methods, these three are your bread and butter:</p>
+            <ul>
+                <li><strong class="text-blue-600">GET</strong> - "Give me data." Parameters are visible in the URL (e.g., <code>?id=1</code>). NEVER send passwords here.</li>
+                <li><strong class="text-yellow-600">POST</strong> - "Take this data." Parameters are hidden in the body. Used for logins and uploads.</li>
+                <li><strong class="text-red-600">PUT/DELETE</strong> - "Update or Destroy." Dangerous methods that often lead to critical bugs if enabled publicly.</li>
+            </ul>
+
+            <h2>3. Status Codes for Hackers</h2>
+            <p>Don't memorize them all. Just know what they imply for security:</p>
+            
+            <div class="grid gap-4 not-prose mt-6">
+                <div class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                    <span class="font-bold text-2xl text-green-600">200</span>
+                    <div>
+                        <h4 class="font-bold text-green-900">OK</h4>
+                        <p class="text-sm text-green-800">Everything worked. If you see this after trying to access <code>/admin</code> without a password, you found a bug!</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <span class="font-bold text-2xl text-yellow-600">302</span>
+                    <div>
+                        <h4 class="font-bold text-yellow-900">Found / Redirect</h4>
+                        <p class="text-sm text-yellow-800">"Go somewhere else." Often used to kick you out to the login page. Check if the redirection is safe (Open Redirect).</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border border-red-200">
+                    <span class="font-bold text-2xl text-red-600">403</span>
+                    <div>
+                        <h4 class="font-bold text-red-900">Forbidden</h4>
+                        <p class="text-sm text-red-800">"I know who you are, but no." This is where the fun begins. Try to bypass this using IDOR or Header manipulation.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                    <span class="font-bold text-2xl text-orange-600">500</span>
+                    <div>
+                        <h4 class="font-bold text-orange-900">Server Error</h4>
+                        <p class="text-sm text-orange-800">"I crashed." <span class="font-bold">GOLD MINE.</span> This often means your input broke the code logic. Could be SQL Injection or RCE.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 text-white p-6 rounded-xl mt-12 not-prose">
+                <h3 class="text-xl font-bold mb-2">🚀 Ready to intercept?</h3>
+                <p class="text-slate-300 mb-4">
+                    The best way to learn HTTP is to stop reading and start watching traffic. Download Burp Suite Community Edition.
+                </p>
+                <a href="https://portswigger.net/burp/communitydownload" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded transition-colors">
+                    Get Burp Suite →
+                </a>
+            </div>
+
+        </article>
+    </div>
+</MainLayout>
