@@ -1,43 +1,52 @@
 ---
-// 1. Import CSS Style di sini (DI DALAM PAGAR)
-import "../styles/global.css";
-
-// 2. Definisi Tipe Data
-interface Props {
-	title: string;
-}
-
-// 3. Ambil data title
 const { title } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Bug Hunting Portfolio" />
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | BugHunter101</title>
+		<title>{title} | Rofi Arasyi Bug Hunting</title>
 	</head>
-	<body class="bg-white text-slate-900 font-sans antialiased">
+	<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
 		
-		<nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 bg-white/80 backdrop-blur-md">
-			<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-				<a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-					<span class="self-center text-2xl font-extrabold whitespace-nowrap tracking-tight">
-                        BugHunter<span class="text-blue-600">101</span>
-                    </span>
-				</a>
-                <div class="space-x-4">
-                    <a href="/learn" class="text-slate-600 hover:text-blue-600 font-medium">Start Learning</a>
-                </div>
-			</div>
-		</nav>
+        <nav class="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+            <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+                <a href="/" class="font-bold text-xl tracking-tight text-slate-900">
+                    🛡️ Bug<span class="text-blue-600">Hunter</span>
+                </a>
+                <a href="/learn" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">
+                    Learning Path
+                </a>
+            </div>
+        </nav>
 
-		<main class="pt-24 min-h-screen max-w-screen-xl mx-auto px-4">
-			<slot />
-		</main>
+        <main class="flex-grow">
+            <slot />
+        </main>
+
+        <footer class="border-t border-slate-200 bg-white mt-12">
+            <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                
+                <div class="text-slate-500 text-sm">
+                    &copy; {new Date().getFullYear()} <span class="font-bold text-slate-900">Rofi Arasyi</span>. 
+                    <span class="hidden md:inline">|</span> 
+                    <span class="block md:inline text-slate-400">Security Analyst & Bug Hunter</span>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors" aria-label="GitHub">
+                        GitHub
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-blue-600 transition-colors" aria-label="LinkedIn">
+                        LinkedIn
+                    </a>
+                </div>
+
+            </div>
+        </footer>
 
 	</body>
 </html>
