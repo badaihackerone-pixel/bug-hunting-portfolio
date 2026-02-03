@@ -5,7 +5,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 <MainLayout title="Reconnaissance">
     <div class="max-w-3xl mx-auto py-12 px-6">
         
-        <a href="/learn" class="text-blue-600 hover:underline mb-8 block">← Back to Learning Path</a>
+        <a href="/learn" class="text-blue-600 hover:underline mb-8 block font-medium">← Back to Learning Path</a>
 
         <article class="prose prose-slate lg:prose-lg">
             
@@ -18,36 +18,67 @@ import MainLayout from '../../layouts/MainLayout.astro';
 
             <h2>1. Passive Recon (Google Dorking)</h2>
             <p>
-                Passive recon means gathering info <strong>without touching the target's server</strong> directly. The most powerful tool is Google itself.
+                Gathering info <strong>without touching the target's server</strong> directly.
             </p>
             
-            <div class="bg-slate-800 text-slate-200 p-4 rounded-lg font-mono text-sm not-prose mb-6">
+            <div class="bg-slate-800 text-slate-200 p-4 rounded-lg font-mono text-sm not-prose mb-6 shadow-lg border border-slate-700">
                 <p class="text-green-400 mb-2">// Find exposed configuration files</p>
-                site:target.com ext:env OR ext:yaml OR ext:xml
+                <span class="text-purple-400">site:</span>target.com <span class="text-purple-400">ext:</span>env OR <span class="text-purple-400">ext:</span>yaml
                 <br><br>
                 <p class="text-green-400 mb-2">// Find hidden admin panels</p>
-                site:target.com inurl:admin OR inurl:dashboard
-                <br><br>
-                <p class="text-green-400 mb-2">// Find public Google Drive docs</p>
-                site:docs.google.com "target.com"
+                <span class="text-purple-400">site:</span>target.com <span class="text-purple-400">inurl:</span>admin
             </div>
 
             <h2>2. Active Recon (Subdomain Enumeration)</h2>
             <p>
-                Active recon involves interacting with the target system. Finding subdomains expands your attack surface. A developer might secure <code>www.target.com</code> but forget to secure <code>dev.target.com</code>.
+                Finding subdomains expands your attack surface. We use tools to query DNS records and find hidden assets.
             </p>
+
+            <div class="my-8 not-prose">
+                <div class="rounded-xl overflow-hidden bg-slate-900 shadow-2xl border border-slate-700">
+                    <div class="bg-slate-800 p-3 flex items-center gap-2 border-b border-slate-700">
+                        <div class="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600"></div>
+                        <div class="ml-4 text-xs text-slate-400 font-mono">root@kali: ~/recon</div>
+                    </div>
+                    
+                    <div class="p-6 font-mono text-sm overflow-x-auto">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-green-400 font-bold">root@kali:~$</span>
+                            <span class="text-white">subfinder -d tesla.com -silent</span>
+                        </div>
+
+                        <div class="text-slate-300 space-y-1">
+                            <p>auth.tesla.com</p>
+                            <p>www.tesla.com</p>
+                            <p>shop.tesla.com</p>
+                            <p class="text-blue-400">api-staging.tesla.com <span class="text-slate-500 ml-2">// Interesting!</span></p>
+                            <p>vpn.tesla.com</p>
+                            <p>dev-portal.tesla.com</p>
+                            <p>mail.tesla.com</p>
+                            <p class="animate-pulse text-green-400 mt-2">... Found 142 subdomains in 4 seconds</p>
+                        </div>
+                        
+                        <div class="flex gap-2 mt-4">
+                            <span class="text-green-400 font-bold">root@kali:~$</span>
+                            <span class="w-2 h-4 bg-slate-500 animate-pulse"></span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center text-sm text-slate-500 mt-3 italic">Figure 1: Simulated output of Subfinder tool.</p>
+            </div>
 
             <h3>Essential Tools</h3>
             <ul>
-                <li><strong>Subfinder:</strong> Fast passive subdomain enumeration tool.</li>
-                <li><strong>Amass:</strong> In-depth asset discovery using various data sources.</li>
-                <li><strong>Httpx:</strong> To check which subdomains are actually alive (returning 200 OK).</li>
+                <li><strong>Subfinder:</strong> Fast passive subdomain enumeration.</li>
+                <li><strong>Httpx:</strong> To check which subdomains are alive.</li>
             </ul>
 
-            <div class="bg-slate-100 border-l-4 border-blue-500 p-4 not-prose my-6">
-                <p class="font-bold text-slate-700">💡 Bug Hunter Tip</p>
-                <p class="text-slate-600">
-                    Always look for subdomains like <code>staging</code>, <code>test</code>, or <code>uat</code>. These environments often have weaker security controls and debug features enabled.
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 not-prose mt-8">
+                <p class="font-bold text-blue-900">💡 Pro Tip</p>
+                <p class="text-blue-800">
+                    Always look for <code>staging</code> or <code>dev</code> subdomains. They often have weaker security controls and debug modes enabled.
                 </p>
             </div>
 
