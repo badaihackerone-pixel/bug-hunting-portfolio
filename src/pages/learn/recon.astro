@@ -1,0 +1,57 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Reconnaissance">
+    <div class="max-w-3xl mx-auto py-12 px-6">
+        
+        <a href="/learn" class="text-blue-600 hover:underline mb-8 block">← Back to Learning Path</a>
+
+        <article class="prose prose-slate lg:prose-lg">
+            
+            <h1>Reconnaissance: The Art of Discovery</h1>
+            <p class="lead">
+                Before you attack, you must see. Reconnaissance is the phase of gathering information about your target to find weak spots.
+            </p>
+
+            <hr />
+
+            <h2>1. Passive Recon (Google Dorking)</h2>
+            <p>
+                Passive recon means gathering info <strong>without touching the target's server</strong> directly. The most powerful tool is Google itself.
+            </p>
+            
+            <div class="bg-slate-800 text-slate-200 p-4 rounded-lg font-mono text-sm not-prose mb-6">
+                <p class="text-green-400 mb-2">// Find exposed configuration files</p>
+                site:target.com ext:env OR ext:yaml OR ext:xml
+                <br><br>
+                <p class="text-green-400 mb-2">// Find hidden admin panels</p>
+                site:target.com inurl:admin OR inurl:dashboard
+                <br><br>
+                <p class="text-green-400 mb-2">// Find public Google Drive docs</p>
+                site:docs.google.com "target.com"
+            </div>
+
+            <h2>2. Active Recon (Subdomain Enumeration)</h2>
+            <p>
+                Active recon involves interacting with the target system. Finding subdomains expands your attack surface. A developer might secure <code>www.target.com</code> but forget to secure <code>dev.target.com</code>.
+            </p>
+
+            <h3>Essential Tools</h3>
+            <ul>
+                <li><strong>Subfinder:</strong> Fast passive subdomain enumeration tool.</li>
+                <li><strong>Amass:</strong> In-depth asset discovery using various data sources.</li>
+                <li><strong>Httpx:</strong> To check which subdomains are actually alive (returning 200 OK).</li>
+            </ul>
+
+            <div class="bg-slate-100 border-l-4 border-blue-500 p-4 not-prose my-6">
+                <p class="font-bold text-slate-700">💡 Bug Hunter Tip</p>
+                <p class="text-slate-600">
+                    Always look for subdomains like <code>staging</code>, <code>test</code>, or <code>uat</code>. These environments often have weaker security controls and debug features enabled.
+                </p>
+            </div>
+
+        </article>
+
+    </div>
+</MainLayout>
